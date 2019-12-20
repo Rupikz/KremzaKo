@@ -1,27 +1,43 @@
 <?php
-class A {}
+namespace Kydryavcev;
 
-class B extends A {
-	public $a;
-	public function __construct ($a) {
-		$this->a = $a;
+ini_set('display_errors', 1);
+error_reporting(-1);
+
+include_once('core/EquationInterface.php');
+include_once('core/LogAbstract.php');
+include_once('core/LogInterface.php');
+include_once('Kydryavcev/Equation.php');
+include_once('Kydryavcev/SquareEquation.php');
+include_once('Kydryavcev/MyLog.php');
+include_once('Kydryavcev/kola_Exception.php');
+
+echo "Vvedite tri 4isla. \n";
+$perem = explode(" ", fgets(STDIN));
+try
+{
+	$file = fopen("version", "r");
+	MyLog::log("Выполняется с верисии: ".fgets($file));
+	echo "Version: ".fgets($file, 4096);
+	fclose($file);
+
+	if (count($perem) != 3) 
+	{						
+		throw new kola_Exception("Ne tri 4isla. Poshel von.");
+	} 
+	else 
+	{
+		$a = (float)$perem[0];
+		$b = (float)$perem[1];
+		$c = (float)$perem[2];
 	}
+	$square = new SquareEquation();
+	MyLog::log("Korni yravneniya:" . implode(' ', $square->solve($a, $b, $c)));
 }
-
-class C extends B {
-	public $b;
-	public function __construct ($a, $b, $c) {
-		$this->b = $b;
-		$this->c = $c;
-		parent::__construct($a)
-	}
+catch (kola_Exception $e) 
+{
+	 echo $e->getMessage();
+	 MyLog::log($e);
 }
-
-$test1 = new A();
-$test2 = new A();
-$test3 = new A();
-$test4 = new B($test2);
-$test5 = new C($test1, $test4, $test3);
-
-//var_dump($test5);
+	MyLog::write()."\n";
 ?>
