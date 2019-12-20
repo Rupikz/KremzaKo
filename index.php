@@ -23,4 +23,5 @@ $test3 = new A();
 $test4 = new B($test2);
 $test5 = new C($test1, $test4, $test3);
 
+//var_dump($test5);
 ?>
