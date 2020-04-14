@@ -1,0 +1,30 @@
+{
+    "config": {
+        "secure-http": false
+    },
+    "name": "rupik/kremza-ko",
+    "authors": [
+        {
+            "name": "Rupikz",
+            "email": "nikolau22233@gmail.com"
+        }
+    ],
+    "repositories":[
+        {
+            "type":"package",
+            "package":{
+                "name":"rok9ru/trpo-core",
+                "version":"dev-master",
+                "source":{
+                    "type":"git",
+                    "url":"http://github.com/rok9ru/trpo-core",
+                    "reference":"master"
+                }
+            }
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    }
+}
